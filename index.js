@@ -1,5 +1,5 @@
-const fileSystem = require("fs");
-const http = require("http");
+const fileSystem = require("fs");  //nodeJS beépített fáljkezelő,  file input/output
+const http = require("http");      
 const url = require("url");
 
 const add = (x, y) => {
@@ -8,7 +8,10 @@ const add = (x, y) => {
   return Math.floor(x + y);
 };
 
-// localhost:8080/?num1=20&num2=5
+console.log(Math.floor(4 + 3))
+
+// localhost:8080/?num1=20&num2=5 
+
 //create a server object:
 http
   .createServer(function (req, res) {
@@ -16,7 +19,7 @@ http
     const queryObject = url.parse(req.url, true).query;
     console.log(url.parse(req.url, true));
     console.log(queryObject);
-    const result = add(Number(queryObject.num1), Number(queryObject.num1));
+    const result = add(Number(queryObject.num1), Number(queryObject.num2));
     console.log(result);
     fileSystem.writeFileSync("./myFile.txt", result.toString());
     res.write(result.toString()); //write a response to the client
